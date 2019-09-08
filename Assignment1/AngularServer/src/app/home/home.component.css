@@ -1,0 +1,22 @@
+.card {
+  background-color:#181818;
+  margin-bottom: 5em;
+  color:white;
+}
+
+.form-control {
+ background-color:#yellow;
+}
+
+.text {
+  color: black;
+}
+
+.inside {
+  margin-left:30em;
+  margin-right:30em;
+}
+
+.centre{
+  text-align: center;
+}

@@ -1,0 +1,223 @@
+<!-- Chatting -->
+<div class="container">
+    <div class="card">
+        <div class="inside">
+            <h3 class="centre">Chat</h3>
+            <form>
+                <select [(ngModel)]="channelName" class="form-control" name="channelName">
+                    <option value="">Select Channel</option>
+                    <option *ngFor="let channel of channels">
+                        {{channel.channelName}}
+                    </option>
+                </select>
+                <br>
+                <input type="text" class="form-control" placeholder="Enter Text">
+                <br>
+                <button class="form-control">Enter</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="user.role == 'superAdmin' || user.role == 'groupAdmin'" class="form-group" class="container">
+    <h2 class="centre"> Admin Control </h2>
+    <div class="card">
+        <div class="inside">
+            
+            <!-- User Control -->
+            <h2 class="centre">User Control</h2>
+
+            <!-- Create User -->
+            <h3 class="centre">Create User</h3>
+            <form>
+                <input type="text" [(ngModel)]="newUser" name="newUser" class="form-control" placeholder="Username" />
+                <br>
+                <input type="text" [(ngModel)]="newEmail" name="newEmail" class="form-control" placeholder="Email" />
+                <br>
+                <select [(ngModel)]="newRole" name="newRole" class="form-control">
+                    <option value="user">User</option>
+                    <option value="groupAdmin">Group Admin</option>
+                    <option value="groupAssis">Group Assis</option>
+                    <option value="superAdmin" *ngIf="user.role == 'superAdmin'">Super Admin</option>
+                </select>
+                <br>
+                <input type="submit" value="Create User" class="form-control" (click)="createUser()" />
+                <br>
+            </form>
+            <br>
+
+            <!-- Delete User -->
+            <div *ngIf="user.role == 'superAdmin'">
+                <h3 class="centre">Delete User</h3>
+                <form>
+                    <select [(ngModel)]="username" name="username" class="form-control">
+                        <option value="">Select User</option>
+                        <option *ngFor="let user of users">
+                            {{user.username}}
+                        </option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Delete User" class="form-control" (click)="deleteUser()" />
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group Control -->
+    <div class="card">
+        <div class="inside">
+            <h2 class="centre">Group Control</h2>
+
+            <!-- Create Group -->
+            <h3 class="centre">Create Group</h3>
+            <form>
+                <input type="text" [(ngModel)]="newGroup" name="newGroup" class="form-control" placeholder="Group Name" />
+                <br>
+                <input type="submit" value="Create Group" name="groupName" class="form-control" (click)="createGroup()" />
+                <br>
+            </form>
+
+            <!-- Delete Group -->
+            <h3 class="centre">Delete Group</h3>
+            <form>
+                <select [(ngModel)]="groupName" name = "groupName" class="form-control">
+                    <option value="">Select Group</option>
+                    <option *ngFor="let group of groups">
+                        {{group.groupName}}
+                    </option>
+                </select>
+                <br>
+                <input type="submit" value="Delete Group" class="form-control" (click)="deleteGroup()" />
+            </form>
+            <br>
+
+            <!-- Add User To Group -->
+            <h3 class="centre">Add users to group</h3>
+            <form>
+                <select [(ngModel)]="groupName" name="groupName" class="form-control">
+                    <option value="">Select Group</option>
+                    <option *ngFor="let group of groups">
+                        {{group.groupName}}
+                    </option>
+                </select>
+                <br>
+                <select [(ngModel)]="username" name="username" class="form-control">
+                    <option value="">Select User</option>
+                    <option *ngFor="let user of users">
+                        {{user.username}}
+                    </option>
+                </select>
+                <br>
+                <input type="submit" value="Add User" class="form-control" (click)="addGroupUser()" />
+                <br>
+            </form>
+            
+
+            <!-- Remove User From Group -->
+            <h3 class="centre">Remove users from group</h3>
+            <form>
+                <select [(ngModel)]="groupName" name="groupName" class="form-control">
+                    <option value="">Select Group</option>
+                    <option *ngFor="let group of groups">
+                        {{group.groupName}}
+                    </option>
+                </select>
+                <br>
+                <select [(ngModel)]="username" name="username" class="form-control">
+                    <option value="">Select User</option>
+                    <option *ngFor="let user of users">
+                        {{user.username}}
+                    </option>
+                </select>
+                <br>
+                <input type="submit" value="Remove User" class="form-control" (click)="removeGroupUser()" />
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Channel Control -->
+<div *ngIf="user.role == 'superAdmin' || user.role == 'groupAadmin' || user.role == 'groupAssis'" class="form-group" class="container">
+    <div class="card">
+        <div class="inside">
+            <h2 class="centre">Channel Control</h2>
+
+            <!--Create Channel -->
+            <h3 class="centre">Create Channel</h3>
+            <form>
+                <select [(ngModel)]="groupName" name="groupName" class="form-control">
+                    <option value="">Select Group</option>
+                    <option *ngFor="let group of groups">
+                        {{group.groupName}}
+                    </option>
+                </select>
+                <br>
+                <input type="text" [(ngModel)]="newChannel" name="newChannel" class="form-control" placeholder="Channel Name" />
+                <br>
+                <input type="submit" value="Create Channel" class="form-control" (click)="createChannel()" />
+                <br>
+            </form>
+
+            <!--Delete Channel -->
+            <h3 class="centre">Delete Channel</h3>
+            <form>
+                <select [(ngModel)]="channelName" name="channelName" class="form-control">
+                    <option value="">Select Channel</option>
+                    <option *ngFor="let x of channels">
+                        {{channel.channelName}}
+                    </option>
+                </select>
+                <br>
+                <input type="submit" value="Delete Channel" class="form-control" (click)="deleteChannel()" />
+            </form>
+            <br>
+
+            <!--Add User To Channel -->
+            <h3 class="centre">Add User</h3>
+            <form>
+                <select [(ngModel)]="channelName" name="channelName" class="form-control">
+                    <option value="">Select Channel</option>
+                    <option *ngFor="let channel of channels">
+                        {{channel.channelName}}
+                    </option>
+                </select>
+                <br>
+                <select [(ngModel)]="username" name="username" class="form-control">
+                    <option value="">Select User</option>
+                    <option *ngFor="let user of users">
+                        {{user.username}}
+                    </option>
+                </select>
+                <br>
+                <input type="submit" value="Add User" class="form-control" (click)="addChannelUser()" />
+                <br>
+            </form>
+            <br>
+
+            <!--Remove User From Channel -->
+            <h3 class="centre">Remove User</h3>
+            <form>
+                <select [(ngModel)]="channelName" name="channelName" class="form-control">
+                    <option value="">Select Channel</option>
+                    <option *ngFor="let channel of channels">
+                        {{channel.channelName}}
+                    </option>
+                </select>
+                <br>
+                <select [(ngModel)]="username" name="username" class="form-control">
+                    <option value="">Select User</option>
+                    <option *ngFor="let user of users">
+                        {{user.username}}
+                    </option>
+                </select>
+                <br>
+                <input type="submit" value="Remove User" class="form-control" (click)="removeChannelUser()" />
+                <br>
+            </form>
+        </div>
+    </div>
+</div>

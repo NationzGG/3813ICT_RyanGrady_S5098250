@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\AngularServer",
+    "\\AngularServer\\src",
+    "\\AngularServer\\src\\app",
+    "\\AngularServer\\src\\app\\home",
+    "\\AngularServer\\src\\app\\login",
+    "\\NodeServer",
+    "\\NodeServer\\routes"
+  ],
+  "SelectedNode": "\\AngularServer\\src\\app\\home\\home.component.html",
+  "PreviewInSolutionExplorer": false
+}
